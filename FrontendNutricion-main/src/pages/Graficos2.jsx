@@ -23,7 +23,7 @@ const Graficos2 = () => {
           if (item.sensacion_granulado_arenoso === 1) granuladoArenoso.Granulado += 1;
           if (item.sensacion_granulado_arenoso === 0) granuladoArenoso.Ninguno += 1;
           if (item.sabor_predominante === "1") saborPredominante.Sí += 1;
-          if (item.sabor_predominante === "2") saborPredominante.No += 1;
+          if (item.sabor_predominante === "0") saborPredominante.No += 1;
         });
 
         setFormData(data);
