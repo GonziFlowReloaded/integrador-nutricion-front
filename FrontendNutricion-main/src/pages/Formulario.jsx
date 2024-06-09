@@ -16,7 +16,7 @@ const Formulario = () => {
   const onSubmit = async (data) => {
     console.log('Datos del formulario:', data);
     try {
-      const response = await axios.post('http://localhost:3000/api/form-data', data);
+      const response = await axios.post('https://backend-deploy-n42p.onrender.com/api/form-data', data);
       console.log('Respuesta del servidor:', response.data);
       navigate('/final');
     } catch (error) {

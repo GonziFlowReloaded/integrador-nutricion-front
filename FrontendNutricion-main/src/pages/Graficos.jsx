@@ -14,7 +14,7 @@ const Graficos = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/form-data');
+        const response = await axios.get('https://backend-deploy-n42p.onrender.com/api/form-data');
         const data = response.data;
 
         // Calcula el promedio de cada categoría (excepto "crujiente" y "sensacion_granulado_arenoso")

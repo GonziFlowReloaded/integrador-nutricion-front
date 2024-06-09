@@ -12,7 +12,7 @@ const Graficos2 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/form-data');
+        const response = await axios.get('https://backend-deploy-n42p.onrender.com/api/form-data');
         const data = response.data;
 
         const granuladoArenoso = { Arenoso: 0, Granulado: 0, Ninguno: 0 };
