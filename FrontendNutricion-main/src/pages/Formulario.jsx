@@ -15,6 +15,12 @@ const Formulario = () => {
 
   const onSubmit = async (data) => {
     console.log('Datos del formulario:', data);
+    // Verificar si todos los campos requeridos están llenos
+    const isFormValid = methods.formState.isValid;
+    if (!isFormValid) {
+      alert('Por favor, completa todas las encuestas antes de enviar la evaluación.');
+      return;
+    }
     try {
       const response = await axios.post('https://backend-deploy-n42p.onrender.com/api/form-data', data);
       console.log('Respuesta del servidor:', response.data);
