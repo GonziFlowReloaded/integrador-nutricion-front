@@ -67,7 +67,30 @@ const Graficos = () => {
         <div className="bg-gray-100 p-8 md:p-10 rounded-md w-full md:max-w-lg text-center">
           <h1 className="select-none text-3xl md:text-4xl font-bold mb-4 pt-4 pb-10 text-gray-800">Diagrama de barras</h1>
           {chartData ? (
-            <Bar data={chartData} options={{ plugins: { legend: { display: false } } }} />
+            <Bar 
+              data={chartData} 
+              options={{ 
+                plugins: { 
+                  legend: { display: false } 
+                },
+                scales: {
+                  y: {
+                    min: 1,
+                    max: 5,
+                    ticks: {
+                      stepSize: 1,
+                      callback: function(value) {
+                        return `${value} ★`;
+                      },
+                      font: {
+                        size: 14,
+                      },
+                      color: '#4b5563', // Tailwind gray-700
+                    }
+                  }
+                }
+              }} 
+            />
           ) : (
             <p>Cargando datos...</p>
           )}
