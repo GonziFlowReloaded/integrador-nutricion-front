@@ -15,12 +15,28 @@ const Formulario = () => {
 
   const onSubmit = async (data) => {
     console.log('Datos del formulario:', data);
-    // Verificar si todos los campos requeridos están llenos
-    const isFormValid = methods.formState.isValid;
-    if (!isFormValid) {
+
+    // Verificar si algún campo de las encuestas está vacío
+    let encuestasIncompletas = false;
+    const encuestas = [
+      "apariencia", "aroma", "sabor", "textura_morder", "textura_boca",
+      "sensaciones", "aspecto_irregularidad", "sensacion_granulado_arenoso",
+      "aroma_percibe", "sabor_predominante", "crujiente", "estrellas_general",
+      "volver_consumir"
+    ];
+
+    encuestas.forEach(encuesta => {
+      if (!data[encuesta]) {
+        encuestasIncompletas = true;
+        return;
+      }
+    });
+
+    if (encuestasIncompletas) {
       alert('Por favor, completa todas las encuestas antes de enviar la evaluación.');
       return;
     }
+
     try {
       const response = await axios.post('https://backend-deploy-n42p.onrender.com/api/form-data', data);
       console.log('Respuesta del servidor:', response.data);
@@ -46,7 +62,7 @@ const Formulario = () => {
             <Encuesta2 pregunta="¿Qué sensaciones experimentas en la boca al comer la galletita? (por ejemplo, sensación de sequedad, cremosidad, etc.)" name="sensaciones" />
             <Encuesta2 pregunta="¿Observas alguna irregularidad en su aspecto? (por ejemplo, quemaduras, desprendimientos, etc)" name="aspecto_irregularidad" />
             <Encuesta3 pregunta="¿Hay alguna sensación de granulado o arenoso?" name="sensacion_granulado_arenoso" />
-            <Encuesta2 pregunta="¿Qué aroma percibes al oler la galletita? (por ejemplo, vainilla, chocolate, rancio, etc)" name="aroma_percibe" />
+            <Encuesta2 pregunta="¿Qué aroma percibes al oler la galletita? (por ejemplo, vainilla, chocolate, cítrico, etc)" name="aroma_percibe" />
             <Encuesta4 pregunta="¿La galletita tiene un sabor predominante?" name="sabor_predominante" />
             <Encuesta4 pregunta="¿La textura de la galletita es crujiente?" name="crujiente" />
             <Encuesta pregunta="¿Qué tanto te gustó el producto en general?" name="estrellas_general" />
